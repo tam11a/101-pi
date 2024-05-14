@@ -1,0 +1,14 @@
+[Unit]
+Description=iotapp
+After=network.target
+[Service]
+WorkingDirectory={{WORKING_DIRECTORY_HERE}}
+ExecStartPre=python3 -m venv env
+ExecStartPre=source env/bin/activate
+ExecStartPre=pip3 install -r requirements.txt
+ExecStart=python3 main.py
+User={{USER_HERE}}
+Restart=on-failure
+RestartSec=10
+[Install]
+WantedBy=multi-user.target
